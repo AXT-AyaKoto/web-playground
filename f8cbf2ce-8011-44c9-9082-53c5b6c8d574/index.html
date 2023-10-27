@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        window.innerHeight = <span></span><br>
+        window.innerWidth = <span></span><br>
+        window.outerHeight = <span></span><br>
+        window.outerWidth = <span></span>
+    </p>
+    <script>
+        window.onload = event => {
+            const spanList = Array.from(document.querySelectorAll("span"));
+            spanList[0].innerText = window.innerHeight;
+            spanList[1].innerText = window.innerWidth;
+            spanList[2].innerText = window.outerHeight;
+            spanList[3].innerText = window.outerWidth;
+        }
+    </script>
+</body>
+
+</html>
