@@ -12,28 +12,24 @@
         <li><a href="./index.html">ホームに戻る</a></li>
         <li>A～Kが左から順番に「ドレミファソラシド」に対応してます</li>
         <li>1つ上の段のそれっぽいところを黒鍵として使えます</li>
-        <li>Pで再生、Mで停止。BPM120固定</li>
-        <li>各キー1回しか使えないことにかいてからきづいた()</li>
     </ul>
     <script>
         scaleKey = Array.from("AWSEDFTGYHUJK");
         // 開始時の準備
         window.addEventListener("load", function () {
             context = new AudioContext();
-            oscillators = {};
-            // 各音階に対応する発振器を作り、destinationに接続する
-            scaleKey.forEach(el => {
-                oscillators[el] = new OscillatorNode(context, {
-                    "type": "sine",
-                    "frequency": 440 * (2 ** ((scaleKey.indexOf(el) + 3) / 12))
-                });
-                oscillators[el].connect(context.destination);
-            });
+            compressor = new DynamicsCompressorNode(context);
+            compressor.connect(context.destination);
             document.addEventListener("keydown", event => {
                 if (scaleKey.includes(event.key.toUpperCase())) {
                     const pressed = event.key.toUpperCase();
-                    oscillators[pressed].start(Math.ceil(context.currentTime / .5) * .5);
-                    oscillators[pressed].stop(Math.ceil(context.currentTime / .5) * .5 + .5);
+                    const oscillator = new OscillatorNode(context, {
+                        "type": "sine",
+                        "frequency": 440 * (2 ** ((scaleKey.indexOf(pressed) + 3) / 12))
+                    });
+                    oscillator.connect(compressor);
+                    oscillator.start();
+                    oscillator.stop(context.currentTime + 0.5);
                 }
             });
         });
