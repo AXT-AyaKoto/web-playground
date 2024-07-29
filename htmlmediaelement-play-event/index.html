@@ -37,7 +37,7 @@ The "currentTime" of "play" and "playing" should be very close to 1.0000.
             });
             audio.play().then(() => {
                 setTimeout(() => {
-                    document.querySelector("pre").innerText += `play().then() : d\n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
+                    document.querySelector("pre").innerText += `play().then() : \n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
                 }, 1000);
             });
         }
