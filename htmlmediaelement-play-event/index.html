@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+
+<body>
+    <p>VOICEVOX:ナースロボ＿タイプＴ</p>
+    <audio src="./test.wav"></audio>
+    <button onclick="play()">再生</button>
+    <pre></pre>
+    <script>
+        const play = () => {
+            const audio = document.querySelector('audio');
+            audio.addEventListener('play', () => {
+                setTimeout(() => {
+                    document.querySelector("pre").innerText += `playイベント発火から1秒経過 :\n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
+                }, 1000);
+            });
+            audio.addEventListener('playing', () => {
+                setTimeout(() => {
+                    document.querySelector("pre").innerText += `playingイベント発火から1秒経過 :\n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
+                }, 1000);
+            });
+            audio.addEventListener('timeupdate', () => {
+                const time = audio.currentTime;
+                setTimeout(() => {
+                    document.querySelector("pre").innerText += `timeupdateイベント発火から1秒経過 :\n  currentTime : ${audio.currentTime.toFixed(4)}\n  fired at    : ${time.toFixed(4)}\n  diff        : ${(audio.currentTime - time).toFixed(4)}\n`;
+                }, 1000);
+            }, {
+                once: true
+            });
+            audio.play();
+        }
+    </script>
+</body>
+
+</html>
