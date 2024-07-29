@@ -10,25 +10,27 @@
 <body>
     <p>VOICEVOX:ナースロボ＿タイプＴ</p>
     <audio src="./test.wav"></audio>
-    <button onclick="play()">再生</button>
-    <pre></pre>
+    <button onclick="play()">Play Test Audio</button>
+    <pre>The logs will be output here.
+The "currentTime" of "play" and "playing" should be very close to 1.0000.
+</pre>
     <script>
         const play = () => {
             const audio = document.querySelector('audio');
             audio.addEventListener('play', () => {
                 setTimeout(() => {
-                    document.querySelector("pre").innerText += `playイベント発火から1秒経過 :\n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
+                    document.querySelector("pre").innerText += `play :\n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
                 }, 1000);
             });
             audio.addEventListener('playing', () => {
                 setTimeout(() => {
-                    document.querySelector("pre").innerText += `playingイベント発火から1秒経過 :\n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
+                    document.querySelector("pre").innerText += `playing :\n  currentTime : ${audio.currentTime.toFixed(4)}\n`;
                 }, 1000);
             });
             audio.addEventListener('timeupdate', () => {
                 const time = audio.currentTime;
                 setTimeout(() => {
-                    document.querySelector("pre").innerText += `timeupdateイベント発火から1秒経過 :\n  currentTime : ${audio.currentTime.toFixed(4)}\n  fired at    : ${time.toFixed(4)}\n  diff        : ${(audio.currentTime - time).toFixed(4)}\n`;
+                    document.querySelector("pre").innerText += `timeupdate :\n  currentTime : ${audio.currentTime.toFixed(4)}\n  fired at    : ${time.toFixed(4)}\n  diff        : ${(audio.currentTime - time).toFixed(4)}\n`;
                 }, 1000);
             }, {
                 once: true
