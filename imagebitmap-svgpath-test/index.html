@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>page-title</title>
+    <!-- ファイル読み込み -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" type="module"></script>
+    <!-- ==== favicon設定 ==== -->
+    <link rel="icon" href="https://axtech.dev/assets/images/icons/Ayasaka-Koto/background.svg">
+    <!-- ==== OGP設定 ==== -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="page-title">
+    <meta property="og:description" content="page-title">
+    <meta property="og:image" content="https://axtech.dev/assets/images/icons/Ayasaka-Koto/background.svg">
+    <meta name="twitter:card" content="summary">
+</head>
+
+<body>
+    <section class="description neumorphism-up">
+        <h1>ImageBitmap / SVG d-Path Performance Test</h1>
+        <p>
+            ImageBitmapとSVG dパスのパフォーマンス比較<br>
+            色と座標がランダムな三角形を描画する処理を繰り返して時間を計測<br>
+        </p>
+    </section>
+    <section class="setting neumorphism-up">
+        <h2>設定</h2>
+        <div class="setting-item">
+            <label for="size">サイズ(px)</label>
+            <input type="number" id="size" value="100" min="100" max="4000" class="neumorphism-down">
+        </div>
+        <div class="setting-item">
+            <label for="count">三角形の数</label>
+            <input type="number" id="count" value="100" min="10" max="1000" class="neumorphism-down">
+        </div>
+        <div class="setting-item">
+            <label for="repeat">繰り返し回数</label>
+            <input type="number" id="repeat" value="100" min="10" max="1000" class="neumorphism-down">
+        </div>
+        <div class="setting-item">
+            <button id="start">開始</button>
+        </div>
+    </section>
+    <section class="canvases neumorphism-up">
+        <canvas id="canvas1" class="neumorphism-down"></canvas>
+        <canvas id="canvas2" class="neumorphism-down"></canvas>
+    </section>
+    <section class="results neumorphism-up">
+        <h2>結果</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ImageBitmap</th>
+                    <th>SVG d-Path</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>合計処理時間</th>
+                    <td id="time1">0.000ms</td>
+                    <td id="time2">0.000ms</td>
+                </tr>
+                <tr>
+                    <th>平均処理時間</th>
+                    <td id="average1">0.000ms</td>
+                    <td id="average2">0.000ms</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+
+</html>
