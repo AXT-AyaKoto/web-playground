@@ -97,8 +97,8 @@ const redraw = () => {
         const canvas_result = $(`#result-${option}`);
         const ctx_result = canvas_result.getContext("2d");
         ctx_result.clearRect(0, 0, canvas_result.width, canvas_result.height);
-        ctx_result.globalCompositeOperation = option;
         ctx_result.drawImage(canvas_baseA, 0, 0);
+        ctx_result.globalCompositeOperation = option;
         ctx_result.drawImage(canvas_baseB, 0, 0);
     });
 };
