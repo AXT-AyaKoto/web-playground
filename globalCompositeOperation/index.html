@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CanvasRenderingContext2D.globalCompositeOperation</title>
+    <!-- ファイル読み込み -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" type="module"></script>
+    <!-- ==== favicon設定 ==== -->
+    <link rel="icon" href="https://axtech.dev/assets/images/icons/Ayasaka-Koto/background.svg">
+    <!-- ==== OGP設定 ==== -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CanvasRenderingContext2D.globalCompositeOperation">
+    <meta property="og:description" content="CanvasRenderingContext2D.globalCompositeOperation">
+    <meta property="og:image" content="https://axtech.dev/assets/images/icons/Ayasaka-Koto/background.svg">
+    <meta name="twitter:card" content="summary">
+</head>
+
+<body>
+    <h1>CanvasRenderingContext2D.globalCompositeOperation</h1>
+    <section class="base"><textarea id="base-a-paths">[
+    { "fill": "#800", "stroke": "#F00", "path": "M0 .1V.4H1V.1Z" },
+    { "fill": "#080", "stroke": "#0F0", "path": "M0 .4V.7H1V.4Z" },
+    { "fill": "#008", "stroke": "#00F", "path": "M0 .7V1H1V.7Z" }
+]</textarea>
+        <textarea id="base-b-paths">[
+    { "fill": "#800", "stroke": "#F00", "path": "M.1 0V1H.4V0Z" },
+    { "fill": "#080", "stroke": "#0F0", "path": "M.4 0V1H.7V0Z" },
+    { "fill": "#008", "stroke": "#00F", "path": "M.7 0V1H1V0Z" }
+]</textarea>
+        <canvas id="base-a" width="200" height="200"></canvas>
+        <canvas id="base-b" width="200" height="200"></canvas>
+    </section>
+    <section class="result">
+    </section>
+</body>
+
+</html>
