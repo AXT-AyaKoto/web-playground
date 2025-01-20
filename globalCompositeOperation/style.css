@@ -1,0 +1,203 @@
+/* =================================================================================
+    フォントの読み込み
+================================================================================== */
+
+/* ==== 'M PLUS 1p' - 通常フォント ==== */
+/* ==== 'Ubuntu' - 英字デザインフォント ==== */
+/* ==== 'M PLUS 1 Code' - 等幅フォント ==== */
+/* ==== 'Zen Kurenaido' - 手書きフォント ==== */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Zen+Kurenaido&display=swap');
+/* ==== 'Font Awesome 6 Free' - アイコンフォント ==== */
+@import url('https://use.fontawesome.com/releases/v6.5.2/css/all.css');
+
+/* =================================================================================
+    色変数
+================================================================================== */
+
+:root {
+    color-scheme: light dark;
+    --brand: #222244;
+    --base: light-dark(oklch(from var(--brand) 0.90 0.033 h), oklch(from var(--brand) 0.25 0.033 h));
+    --text: light-dark(oklch(from var(--brand) 0.25 0.00 h), oklch(from var(--brand) 0.90 0.00 h));
+    --shadow-light: oklch(from var(--base) calc(l + 0.07) c h);
+    --shadow-dark: oklch(from var(--base) calc(l - 0.07) c h);
+}
+
+/* =================================================================================
+    CSSのNormalize
+================================================================================== */
+
+* {
+    margin: 0;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: 300 1rem/1.25 'Ubuntu', 'M PLUS 1p';
+    word-break: auto-phrase;
+    color: var(--text);
+}
+
+:where(ul, ol, li) {
+    padding-left: revert;
+}
+
+/* =================================================================================
+    ニューモーフィズム
+================================================================================== */
+.neumorphism-up {
+    box-shadow: -3px -3px 4px var(--shadow-light), 3px 3px 4px var(--shadow-dark);
+}
+
+.neumorphism-down {
+    box-shadow: inset -2px -2px 3px var(--shadow-light), inset 2px 2px 3px var(--shadow-dark);
+}
+
+button,
+.neumorphism-button {
+    border-radius: 1.5rem;
+    padding-top: .125rem;
+    padding-bottom: .125rem;
+    box-shadow:
+        -3px -3px 5px var(--shadow-light),
+        3px 3px 5px var(--shadow-dark),
+        inset 0px 0px 0px var(--shadow-light),
+        inset 0px 0px 0px var(--shadow-dark);
+    background: linear-gradient(to right bottom, var(--button-left), var(--button-right));
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+    &:hover {
+        box-shadow:
+            -4px -4px 6px var(--shadow-light),
+            4px 4px 6px var(--shadow-dark),
+            inset 0px 0px 0px var(--shadow-light),
+            inset 0px 0px 0px var(--shadow-dark);
+        transform: translateY(-.125px) scale(1.005);
+    }
+
+    &:active {
+        box-shadow:
+            0px 0px 0px var(--shadow-light),
+            0px 0px 0px var(--shadow-dark),
+            inset -2px -2px 3px var(--shadow-light),
+            inset 2px 2px 3px var(--shadow-dark);
+        transform: translateY(.125px) scale(0.995);
+    }
+}
+
+/* =================================================================================
+    フェード
+================================================================================== */
+
+@keyframes fadeIn {
+    from {
+        filter: opacity(0);
+    }
+
+    to {
+        filter: opacity(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        filter: opacity(1);
+    }
+
+    to {
+        filter: opacity(0);
+    }
+}
+
+/* =================================================================================
+    共通スタイル
+================================================================================== */
+
+body {
+    width: 100dvw;
+    height: 100dvh;
+    background: var(--base);
+    overscroll-behavior: none;
+    padding: 1rem 3rem;
+
+
+    &>*+* {
+        margin-top: 1rem;
+    }
+}
+
+:root {
+    --canvas-size: 10rem;
+}
+
+canvas {
+    border-radius: .5rem;
+    width: var(--canvas-size);
+    height: var(--canvas-size);
+    --bg-size: 1rem;
+    --bg-color-a: #666;
+    --bg-color-b: #999;
+    background-image: linear-gradient(45deg, var(--bg-color-a) 25%, transparent 25%, transparent 75%, var(--bg-color-a) 75%), linear-gradient(45deg, var(--bg-color-a) 25%, transparent 25%, transparent 75%, var(--bg-color-a) 75%);
+    background-position: 0 0, calc(var(--bg-size) / 2) calc(var(--bg-size) / 2);
+    background-size: var(--bg-size) var(--bg-size);
+    background-color: var(--bg-color-b);
+}
+
+/* =================================================================================
+    設定セクション
+================================================================================== */
+
+section.base {
+    display: grid;
+    gap: 1rem;
+    grid-template-rows: var(--canvas-size) var(--canvas-size);
+    grid-template-columns: 10rem 1fr;
+
+    &>canvas#base-a {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    &>canvas#base-b {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    &>textarea {
+        resize: none;
+        padding: .5rem;
+        border-radius: .5rem;
+        grid-column: 2;
+        font: 1rem/1.25 'M PLUS 1 Code', monospace;
+
+        &#base-a-paths {
+            grid-row: 1;
+        }
+
+        &#base-b-paths {
+            grid-row: 2;
+        }
+    }
+}
+
+/* =================================================================================
+    結果セクション
+================================================================================== */
+
+section.result {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    &>div {
+        display: block grid;
+        height: calc(var(--canvas-size) + 1.25rem);
+        grid-template-columns: var(--canvas-size);
+        grid-template-rows: 1.25rem 10rem;
+
+        &>p {
+            font: 1rem/1.25 'Ubuntu', 'M PLUS 1p';
+            text-align: center;
+        }
+    }
+}
